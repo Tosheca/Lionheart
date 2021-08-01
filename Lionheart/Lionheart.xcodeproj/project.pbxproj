@@ -9,12 +9,13 @@
 /* Begin PBXBuildFile section */
 		ED28C51926B6E01000C3D2AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28C51826B6E01000C3D2AF /* AppDelegate.swift */; };
 		ED28C51B26B6E01000C3D2AF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28C51A26B6E01000C3D2AF /* SceneDelegate.swift */; };
-		ED28C51D26B6E01000C3D2AF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28C51C26B6E01000C3D2AF /* ViewController.swift */; };
 		ED28C52026B6E01000C3D2AF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED28C51E26B6E01000C3D2AF /* Main.storyboard */; };
 		ED28C52226B6E01100C3D2AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED28C52126B6E01100C3D2AF /* Assets.xcassets */; };
 		ED28C52526B6E01100C3D2AF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED28C52326B6E01100C3D2AF /* LaunchScreen.storyboard */; };
 		ED28C53026B6E01100C3D2AF /* LionheartTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28C52F26B6E01100C3D2AF /* LionheartTests.swift */; };
 		ED28C53B26B6E01100C3D2AF /* LionheartUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28C53A26B6E01100C3D2AF /* LionheartUITests.swift */; };
+		ED28C54A26B6E3BD00C3D2AF /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28C54926B6E3BD00C3D2AF /* HomeScreenViewController.swift */; };
+		ED28C54D26B6E5A500C3D2AF /* Collectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28C54C26B6E5A500C3D2AF /* Collectable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,7 +39,6 @@
 		ED28C51526B6E01000C3D2AF /* Lionheart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lionheart.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED28C51826B6E01000C3D2AF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ED28C51A26B6E01000C3D2AF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		ED28C51C26B6E01000C3D2AF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		ED28C51F26B6E01000C3D2AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		ED28C52126B6E01100C3D2AF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ED28C52426B6E01100C3D2AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +49,8 @@
 		ED28C53626B6E01100C3D2AF /* LionheartUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LionheartUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED28C53A26B6E01100C3D2AF /* LionheartUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LionheartUITests.swift; sourceTree = "<group>"; };
 		ED28C53C26B6E01100C3D2AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ED28C54926B6E3BD00C3D2AF /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
+		ED28C54C26B6E5A500C3D2AF /* Collectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collectable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,8 +103,9 @@
 			children = (
 				ED28C51826B6E01000C3D2AF /* AppDelegate.swift */,
 				ED28C51A26B6E01000C3D2AF /* SceneDelegate.swift */,
-				ED28C51C26B6E01000C3D2AF /* ViewController.swift */,
 				ED28C51E26B6E01000C3D2AF /* Main.storyboard */,
+				ED28C54B26B6E57400C3D2AF /* Models */,
+				ED28C54826B6E38400C3D2AF /* ViewControllers */,
 				ED28C52126B6E01100C3D2AF /* Assets.xcassets */,
 				ED28C52326B6E01100C3D2AF /* LaunchScreen.storyboard */,
 				ED28C52626B6E01100C3D2AF /* Info.plist */,
@@ -126,6 +129,22 @@
 				ED28C53C26B6E01100C3D2AF /* Info.plist */,
 			);
 			path = LionheartUITests;
+			sourceTree = "<group>";
+		};
+		ED28C54826B6E38400C3D2AF /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				ED28C54926B6E3BD00C3D2AF /* HomeScreenViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		ED28C54B26B6E57400C3D2AF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				ED28C54C26B6E5A500C3D2AF /* Collectable.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,8 +277,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED28C51D26B6E01000C3D2AF /* ViewController.swift in Sources */,
+				ED28C54A26B6E3BD00C3D2AF /* HomeScreenViewController.swift in Sources */,
 				ED28C51926B6E01000C3D2AF /* AppDelegate.swift in Sources */,
+				ED28C54D26B6E5A500C3D2AF /* Collectable.swift in Sources */,
 				ED28C51B26B6E01000C3D2AF /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
