@@ -7,7 +7,17 @@
 
 import UIKit
 
-let CELL_HORIZONTAL_SPACING: CGFloat = 40
+var CELL_HORIZONTAL_SPACING: CGFloat {
+    get {
+        // Adjust horizontal spacing based on device
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            return 80
+        }
+        else {
+            return 40
+        }
+    }
+}
 
 class HomeScreenViewController: UIViewController {
 
@@ -31,6 +41,16 @@ class HomeScreenViewController: UIViewController {
         setup()
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        coordinator.animate(alongsideTransition: nil, completion: { _ in
+            // called right after rotation transition ends
+            self.view.setNeedsLayout()
+            self.collectablesCollectionView.reloadData()
+            self.selectFocusedCell()
+        })
+    }
+        
     private func setup() {
         self.title = "Colletables"
         

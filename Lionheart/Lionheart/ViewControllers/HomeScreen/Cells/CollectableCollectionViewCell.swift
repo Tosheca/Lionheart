@@ -39,6 +39,12 @@ class CollectableCollectionViewCell: UICollectionViewCell {
         return authorLabel
     }()
     
+    private let gradientLayer: CAGradientLayer = {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
+        return gradientLayer
+    }()
+    
     private var collectable: Collectable! {
         didSet {
             updateUI()
@@ -72,6 +78,13 @@ class CollectableCollectionViewCell: UICollectionViewCell {
         addGradientInfoBackground()
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        // Updaing gradient bounds because of autolayout
+        addGradientInfoBackground()
+    }
+    
     private func setupConstraints() {
         collectableImageView.translatesAutoresizingMaskIntoConstraints = false
         collectableImageView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor).isActive = true
@@ -95,8 +108,16 @@ class CollectableCollectionViewCell: UICollectionViewCell {
         infoLabel.leadingAnchor.constraint(equalTo: authorLabel.leadingAnchor).isActive = true
         infoLabel.trailingAnchor.constraint(equalTo: authorLabel.trailingAnchor).isActive = true
         infoLabel.bottomAnchor.constraint(equalTo: authorLabel.topAnchor).isActive = true
-        infoLabel.heightAnchor.constraint(equalTo: infoView.heightAnchor, multiplier: 0.15).isActive = true
+        
+        // Adjusting min height of the title
+        let height = infoLabel.heightAnchor.constraint(equalTo: infoView.heightAnchor, multiplier: 0.15)
+        let minHeight = infoLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 30)
+        height.priority = .defaultHigh
+        minHeight.priority = .required
 
+        NSLayoutConstraint.activate([
+            height, minHeight
+        ])
     }
 }
 
@@ -106,10 +127,11 @@ extension CollectableCollectionViewCell {
         // Layout subviews in order to use bounds correctly
         self.layoutIfNeeded()
         
-        // Adding shading layer behind the info texts
-        let gradientLayer = CAGradientLayer()
+        // Updating the bounds every time the func is called to ensure autolayout
         gradientLayer.frame = infoView.bounds
-        gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
+        
+        // Removes the previously based bounds gradient and applies the new one
+        gradientLayer.removeFromSuperlayer()
         infoView.layer.insertSublayer(gradientLayer, at: 0)
     }
     
