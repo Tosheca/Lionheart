@@ -16,6 +16,7 @@
 		ED28C53B26B6E01100C3D2AF /* LionheartUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28C53A26B6E01100C3D2AF /* LionheartUITests.swift */; };
 		ED28C54A26B6E3BD00C3D2AF /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28C54926B6E3BD00C3D2AF /* HomeScreenViewController.swift */; };
 		ED28C54D26B6E5A500C3D2AF /* Collectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28C54C26B6E5A500C3D2AF /* Collectable.swift */; };
+		ED28C55126B6EB8800C3D2AF /* CollectableCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28C55026B6EB8800C3D2AF /* CollectableCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		ED28C53C26B6E01100C3D2AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ED28C54926B6E3BD00C3D2AF /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
 		ED28C54C26B6E5A500C3D2AF /* Collectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collectable.swift; sourceTree = "<group>"; };
+		ED28C55026B6EB8800C3D2AF /* CollectableCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectableCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,7 +136,7 @@
 		ED28C54826B6E38400C3D2AF /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				ED28C54926B6E3BD00C3D2AF /* HomeScreenViewController.swift */,
+				ED28C54E26B6EB2400C3D2AF /* HomeScreen */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -145,6 +147,23 @@
 				ED28C54C26B6E5A500C3D2AF /* Collectable.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		ED28C54E26B6EB2400C3D2AF /* HomeScreen */ = {
+			isa = PBXGroup;
+			children = (
+				ED28C54F26B6EB3000C3D2AF /* Cells */,
+				ED28C54926B6E3BD00C3D2AF /* HomeScreenViewController.swift */,
+			);
+			path = HomeScreen;
+			sourceTree = "<group>";
+		};
+		ED28C54F26B6EB3000C3D2AF /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				ED28C55026B6EB8800C3D2AF /* CollectableCollectionViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -279,6 +298,7 @@
 			files = (
 				ED28C54A26B6E3BD00C3D2AF /* HomeScreenViewController.swift in Sources */,
 				ED28C51926B6E01000C3D2AF /* AppDelegate.swift in Sources */,
+				ED28C55126B6EB8800C3D2AF /* CollectableCollectionViewCell.swift in Sources */,
 				ED28C54D26B6E5A500C3D2AF /* Collectable.swift in Sources */,
 				ED28C51B26B6E01000C3D2AF /* SceneDelegate.swift in Sources */,
 			);

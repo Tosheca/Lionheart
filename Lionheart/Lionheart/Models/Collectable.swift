@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class Collecatble {
+class Collectable {
     var image: UIImage!
     var author: String!
     var title: String!
