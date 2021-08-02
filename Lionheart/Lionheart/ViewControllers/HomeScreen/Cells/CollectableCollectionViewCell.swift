@@ -8,7 +8,36 @@
 import UIKit
 
 class CollectableCollectionViewCell: UICollectionViewCell {
-    private var collectableImageView = UIImageView()
+    
+    // MARK: Variables
+    private var collectableImageView: UIImageView = {
+       let collectableImageView = UIImageView()
+        collectableImageView.contentMode = .scaleAspectFill
+        return collectableImageView
+    }()
+    
+    private var infoView: UIView = {
+        let infoView = UIView()
+        return infoView
+    }()
+    
+    private var infoLabel: UILabel = {
+        let infoLabel = UILabel()
+        infoLabel.textColor = .white
+        infoLabel.textAlignment = .left
+        infoLabel.font = UIFont.boldSystemFont(ofSize: 25)
+        infoLabel.adjustsFontSizeToFitWidth = true
+        return infoLabel
+    }()
+    
+    private var authorLabel: UILabel = {
+        let authorLabel = UILabel()
+        authorLabel.textColor = .white
+        authorLabel.textAlignment = .left
+        authorLabel.font = UIFont.boldSystemFont(ofSize: 12)
+        authorLabel.adjustsFontSizeToFitWidth = true
+        return authorLabel
+    }()
     
     private var collectable: Collectable! {
         didSet {
@@ -32,11 +61,15 @@ class CollectableCollectionViewCell: UICollectionViewCell {
         self.layer.cornerRadius = 10
         self.backgroundColor = .red
         
+        infoView.addSubview(infoLabel)
+        infoView.addSubview(authorLabel)
+        
         self.contentView.addSubview(collectableImageView)
-        
-        collectableImageView.contentMode = .scaleAspectFill
-        
+        self.contentView.addSubview(infoView)
+                
         setupConstraints()
+        
+        addGradientInfoBackground()
     }
     
     private func setupConstraints() {
@@ -45,10 +78,40 @@ class CollectableCollectionViewCell: UICollectionViewCell {
         collectableImageView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor).isActive = true
         collectableImageView.topAnchor.constraint(equalTo: self.contentView.topAnchor).isActive = true
         collectableImageView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor).isActive = true
+        
+        infoView.translatesAutoresizingMaskIntoConstraints = false
+        infoView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor).isActive = true
+        infoView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor).isActive = true
+        infoView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor).isActive = true
+        infoView.heightAnchor.constraint(equalTo: self.contentView.heightAnchor, multiplier: 0.5).isActive = true
+        
+        authorLabel.translatesAutoresizingMaskIntoConstraints = false
+        authorLabel.leadingAnchor.constraint(equalTo: infoView.leadingAnchor, constant: 20).isActive = true
+        authorLabel.trailingAnchor.constraint(equalTo: infoView.trailingAnchor, constant: -20).isActive = true
+        authorLabel.bottomAnchor.constraint(equalTo: infoView.bottomAnchor, constant: -10).isActive = true
+        authorLabel.heightAnchor.constraint(equalTo: infoView.heightAnchor, multiplier: 0.1).isActive = true
+        
+        infoLabel.translatesAutoresizingMaskIntoConstraints = false
+        infoLabel.leadingAnchor.constraint(equalTo: authorLabel.leadingAnchor).isActive = true
+        infoLabel.trailingAnchor.constraint(equalTo: authorLabel.trailingAnchor).isActive = true
+        infoLabel.bottomAnchor.constraint(equalTo: authorLabel.topAnchor).isActive = true
+        infoLabel.heightAnchor.constraint(equalTo: infoView.heightAnchor, multiplier: 0.15).isActive = true
+
     }
 }
 
 extension CollectableCollectionViewCell {
+    
+    func addGradientInfoBackground() {
+        // Layout subviews in order to use bounds correctly
+        self.layoutIfNeeded()
+        
+        // Adding shading layer behind the info texts
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = infoView.bounds
+        gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
+        infoView.layer.insertSublayer(gradientLayer, at: 0)
+    }
     
     func loadCollectable(collectable: Collectable) {
         self.collectable = collectable
@@ -57,6 +120,12 @@ extension CollectableCollectionViewCell {
     private func updateUI() {
         if collectable.image != nil {
             collectableImageView.image = collectable.image
+        }
+        
+        infoLabel.text = collectable.title ?? ""
+        
+        if collectable.author != nil {
+            authorLabel.text = "by " + collectable.author
         }
     }
     

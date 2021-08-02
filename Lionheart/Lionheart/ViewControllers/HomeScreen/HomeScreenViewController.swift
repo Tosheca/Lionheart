@@ -32,6 +32,8 @@ class HomeScreenViewController: UIViewController {
     }
     
     private func setup() {
+        self.title = "Colletables"
+        
         collectablesCollectionView.delegate = self
         collectablesCollectionView.dataSource = self
         collectablesCollectionView.showsHorizontalScrollIndicator = false
@@ -47,6 +49,7 @@ class HomeScreenViewController: UIViewController {
 }
 
 extension HomeScreenViewController {
+    // Fetches pre-downloaded data for testing purposes
     private func fetchCollectables() {
         let collectable1 = Collectable(image: UIImage(named: "dog"), title: "Dog", author: "Teodor Pavlov")
         let collectable2 = Collectable(image: UIImage(named: "cat"), title: "Cat", author: "Teodor Pavlov")
