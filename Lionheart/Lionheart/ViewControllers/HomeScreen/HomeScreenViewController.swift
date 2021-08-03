@@ -41,16 +41,6 @@ class HomeScreenViewController: UIViewController {
         setup()
     }
     
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-        coordinator.animate(alongsideTransition: nil, completion: { _ in
-            // called right after rotation transition ends
-            self.view.setNeedsLayout()
-            self.collectablesCollectionView.reloadData()
-            self.selectFocusedCell()
-        })
-    }
-        
     private func setup() {
         self.title = "Collectables"
         
@@ -61,6 +51,17 @@ class HomeScreenViewController: UIViewController {
         collectablesCollectionView.contentInset = UIEdgeInsets(top: 0, left: 2 * CELL_HORIZONTAL_SPACING, bottom: 0, right: 2 * CELL_HORIZONTAL_SPACING)
                 
         fetchCollectables()
+    }
+    
+    // MARK: Rotation of device
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        coordinator.animate(alongsideTransition: nil, completion: { _ in
+            // called right after rotation transition ends
+            self.view.setNeedsLayout()
+            self.collectablesCollectionView.reloadData()
+            self.selectFocusedCell()
+        })
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -89,6 +90,14 @@ extension HomeScreenViewController {
         collectables.append(collectable7)
         collectables.append(collectable8)
     }
+    
+    private func openCollectable(_ collectable: Collectable) {
+        
+        
+        
+        let imageHandlerVC = ImageHandlerViewController(collectable)
+        self.navigationController?.pushViewController(imageHandlerVC, animated: true)
+    }
 }
 
 // MARK: Collection View
@@ -116,6 +125,12 @@ extension HomeScreenViewController: UICollectionViewDataSource, UICollectionView
         else {
             return UICollectionViewCell()
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let chosenCollectable = collectables[indexPath.item]
+        
+        openCollectable(chosenCollectable)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
