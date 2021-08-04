@@ -19,6 +19,9 @@
 		ED28C55126B6EB8800C3D2AF /* CollectableCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28C55026B6EB8800C3D2AF /* CollectableCollectionViewCell.swift */; };
 		ED28C55C26B91D8E00C3D2AF /* ImageHandlerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28C55A26B91D8E00C3D2AF /* ImageHandlerViewController.swift */; };
 		ED28C55D26B91D8E00C3D2AF /* ImageHandlerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED28C55B26B91D8E00C3D2AF /* ImageHandlerViewController.xib */; };
+		ED28C56026B9D0BD00C3D2AF /* DraggableLayerImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28C55F26B9D0BD00C3D2AF /* DraggableLayerImageView.swift */; };
+		ED28C56326BAD89B00C3D2AF /* ImageProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28C56226BAD89B00C3D2AF /* ImageProcessor.swift */; };
+		ED28C56526BAD96100C3D2AF /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED28C56426BAD96100C3D2AF /* UIImageViewExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +60,9 @@
 		ED28C55026B6EB8800C3D2AF /* CollectableCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectableCollectionViewCell.swift; sourceTree = "<group>"; };
 		ED28C55A26B91D8E00C3D2AF /* ImageHandlerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHandlerViewController.swift; sourceTree = "<group>"; };
 		ED28C55B26B91D8E00C3D2AF /* ImageHandlerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageHandlerViewController.xib; sourceTree = "<group>"; };
+		ED28C55F26B9D0BD00C3D2AF /* DraggableLayerImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggableLayerImageView.swift; sourceTree = "<group>"; };
+		ED28C56226BAD89B00C3D2AF /* ImageProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProcessor.swift; sourceTree = "<group>"; };
+		ED28C56426BAD96100C3D2AF /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,7 +117,10 @@
 				ED28C51A26B6E01000C3D2AF /* SceneDelegate.swift */,
 				ED28C51E26B6E01000C3D2AF /* Main.storyboard */,
 				ED28C54B26B6E57400C3D2AF /* Models */,
+				ED28C56126BAD86F00C3D2AF /* Controllers */,
 				ED28C54826B6E38400C3D2AF /* ViewControllers */,
+				ED28C55E26B9D08A00C3D2AF /* CustomViews */,
+				ED28C56626BAD96700C3D2AF /* Extensions */,
 				ED28C52126B6E01100C3D2AF /* Assets.xcassets */,
 				ED28C52326B6E01100C3D2AF /* LaunchScreen.storyboard */,
 				ED28C52626B6E01100C3D2AF /* Info.plist */,
@@ -178,6 +187,30 @@
 				ED28C55B26B91D8E00C3D2AF /* ImageHandlerViewController.xib */,
 			);
 			path = ImageHandlerVC;
+			sourceTree = "<group>";
+		};
+		ED28C55E26B9D08A00C3D2AF /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				ED28C55F26B9D0BD00C3D2AF /* DraggableLayerImageView.swift */,
+			);
+			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		ED28C56126BAD86F00C3D2AF /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				ED28C56226BAD89B00C3D2AF /* ImageProcessor.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		ED28C56626BAD96700C3D2AF /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				ED28C56426BAD96100C3D2AF /* UIImageViewExtension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -313,10 +346,13 @@
 			files = (
 				ED28C54A26B6E3BD00C3D2AF /* HomeScreenViewController.swift in Sources */,
 				ED28C51926B6E01000C3D2AF /* AppDelegate.swift in Sources */,
+				ED28C56326BAD89B00C3D2AF /* ImageProcessor.swift in Sources */,
 				ED28C55C26B91D8E00C3D2AF /* ImageHandlerViewController.swift in Sources */,
 				ED28C55126B6EB8800C3D2AF /* CollectableCollectionViewCell.swift in Sources */,
+				ED28C56526BAD96100C3D2AF /* UIImageViewExtension.swift in Sources */,
 				ED28C54D26B6E5A500C3D2AF /* Collectable.swift in Sources */,
 				ED28C51B26B6E01000C3D2AF /* SceneDelegate.swift in Sources */,
+				ED28C56026B9D0BD00C3D2AF /* DraggableLayerImageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
