@@ -10,7 +10,7 @@ import UIKit
 class ImageHandlerViewController: UIViewController {
 
     var draggedImages = [UIImage]()
-    let layerImageView = DraggableLayerImageView(image: UIImage(named: "cat"))
+    let layerImageView = DraggableLayerImageView(image: UIImage(named: "crown"))
     
     enum TopButtonType {
         case export
@@ -66,11 +66,18 @@ class ImageHandlerViewController: UIViewController {
 }
 
 extension ImageHandlerViewController {
+    // MARK: Exporting/Sharing image
     @objc private func exportTapped() {
-
+        // set up activity view controller
+        let imageToShare = [collectableImageView.image!]
+        let activityViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
+                
+        self.present(activityViewController, animated: true, completion: nil)
         
     }
     
+    // MARK: Merging edits with image
     @objc private func saveTapped() {
         self.collectableImageView.image = ImageProcessor.mergeImageWithLayer(mainImageView: collectableImageView, layerImageView: layerImageView)
         
@@ -81,7 +88,6 @@ extension ImageHandlerViewController {
         
         layerImageView.contentMode = .scaleAspectFit
         layerImageView.isUserInteractionEnabled = true
-        layerImageView.backgroundColor = .red
         
         var aspectR: CGFloat = 0.0
 
@@ -89,7 +95,7 @@ extension ImageHandlerViewController {
         self.view.addSubview(layerImageView)
         
         layerImageView.translatesAutoresizingMaskIntoConstraints = false
-        layerImageView.widthAnchor.constraint(equalToConstant: 232).isActive = true
+        layerImageView.widthAnchor.constraint(equalToConstant: 75).isActive = true
         layerImageView.heightAnchor.constraint(equalTo: layerImageView.widthAnchor, multiplier: 1/aspectR).isActive = true
         layerImageView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
         layerImageView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
@@ -103,6 +109,7 @@ extension ImageHandlerViewController {
         }
     }
     
+    // Switching top button depending on the state of the image. Save must always happen before export!
     private func setTopButtonTo(buttonType: TopButtonType) {
         if buttonType == .export {
             let exportButton = UIBarButtonItem(title: "Export", style: .plain, target: self, action: #selector(exportTapped))

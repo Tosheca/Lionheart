@@ -153,14 +153,14 @@ extension CollectableCollectionViewCell {
     
     //MARK: Cell Transformations
     func transformToFocus() {
-        UIView.animate(withDuration: 0.2, animations: {
+        UIView.animate(withDuration: 0.2, delay: 0, options: [.allowUserInteraction], animations: {
             self.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
-        })
+        }, completion: nil)
     }
     
     func transformToOriginal() {
-        UIView.animate(withDuration: 0.2, animations: {
+        UIView.animate(withDuration: 0.2, delay: 0, options: [.allowUserInteraction], animations: {
             self.transform = .identity
-        })
+        }, completion: nil)
     }
 }

@@ -145,9 +145,11 @@ extension HomeScreenViewController: UICollectionViewDataSource, UICollectionView
             let convertedRect = visibleCell.convert(visibleCell.bounds, to: self.view)
 
             if convertedRect.contains(self.view.center) {
-                focusedCell.transformToOriginal()
-                focusedCell = visibleCell as! CollectableCollectionViewCell
-                focusedCell.transformToFocus()
+                if visibleCell != focusedCell {
+                    focusedCell.transformToOriginal()
+                    focusedCell = visibleCell as! CollectableCollectionViewCell
+                    focusedCell.transformToFocus()
+                }
             }
         }
     }
