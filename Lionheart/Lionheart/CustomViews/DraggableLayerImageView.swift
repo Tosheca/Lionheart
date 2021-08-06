@@ -16,7 +16,7 @@ class DraggableLayerImageView: UIImageView {
         super.init(image: image)
         
         self.isUserInteractionEnabled = true
-        addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handlePan(recognizer:))))
+        self.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handlePan(recognizer:))))
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -47,12 +47,11 @@ class DraggableLayerImageView: UIImageView {
     
     func enableZoom() {
         let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(startZooming(_:)))
-        isUserInteractionEnabled = true
-        addGestureRecognizer(pinchGesture)
+        self.isUserInteractionEnabled = true
+        self.addGestureRecognizer(pinchGesture)
     }
     
-    @objc
-    private func startZooming(_ sender: UIPinchGestureRecognizer) {
+    @objc private func startZooming(_ sender: UIPinchGestureRecognizer) {
         let scaleResult = sender.view?.transform.scaledBy(x: sender.scale, y: sender.scale)
         guard let scale = scaleResult, scale.a > 1, scale.d > 1 else { return }
         sender.view?.transform = scale

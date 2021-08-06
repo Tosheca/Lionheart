@@ -92,9 +92,6 @@ extension HomeScreenViewController {
     }
     
     private func openCollectable(_ collectable: Collectable) {
-        
-        
-        
         let imageHandlerVC = ImageHandlerViewController(collectable)
         self.navigationController?.pushViewController(imageHandlerVC, animated: true)
     }

@@ -11,7 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ImageHandlerViewController" customModule="Lionheart" customModuleProvider="target">
             <connections>
                 <outlet property="collectableImageView" destination="NNd-oX-QY1" id="Yaq-Tt-v1z"/>
-                <outlet property="containerView" destination="wGF-NE-sx3" id="Gy5-LB-CAr"/>
+                <outlet property="layersCollectionView" destination="Oeh-sk-gqd" id="980-Yh-WU2"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -21,26 +21,34 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NNd-oX-QY1">
-                    <rect key="frame" x="0.0" y="44" width="414" height="663"/>
+                    <rect key="frame" x="0.0" y="44" width="414" height="718"/>
                 </imageView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wGF-NE-sx3">
-                    <rect key="frame" x="0.0" y="707" width="414" height="155"/>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Oeh-sk-gqd">
+                    <rect key="frame" x="0.0" y="762" width="414" height="100"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="155" id="egj-VB-fK0"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="wSn-4v-ZHV"/>
                     </constraints>
-                </view>
+                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="xk5-Tp-aVZ">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="wGF-NE-sx3" secondAttribute="bottom" id="5Ma-IV-cm0"/>
+                <constraint firstItem="Oeh-sk-gqd" firstAttribute="height" secondItem="fnl-2z-Ty3" secondAttribute="height" multiplier="0.122249" priority="900" id="2PQ-HG-qaF"/>
+                <constraint firstItem="Oeh-sk-gqd" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="8ou-nM-2ZG"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Oeh-sk-gqd" secondAttribute="trailing" id="Gs8-SL-Oiz"/>
+                <constraint firstItem="Oeh-sk-gqd" firstAttribute="top" secondItem="NNd-oX-QY1" secondAttribute="bottom" id="Txb-xJ-KBM"/>
                 <constraint firstItem="NNd-oX-QY1" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="UPm-QS-Oav"/>
-                <constraint firstItem="wGF-NE-sx3" firstAttribute="trailing" secondItem="NNd-oX-QY1" secondAttribute="trailing" id="Wdb-Dp-NGc"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Oeh-sk-gqd" secondAttribute="bottom" id="ZFV-B6-RMz"/>
                 <constraint firstItem="NNd-oX-QY1" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="bdy-EC-e5v"/>
-                <constraint firstItem="wGF-NE-sx3" firstAttribute="leading" secondItem="NNd-oX-QY1" secondAttribute="leading" id="d7H-oY-66G"/>
+                <constraint firstItem="Oeh-sk-gqd" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="cZJ-Nx-nym"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="NNd-oX-QY1" secondAttribute="trailing" id="upf-i6-r57"/>
-                <constraint firstItem="wGF-NE-sx3" firstAttribute="top" secondItem="NNd-oX-QY1" secondAttribute="bottom" id="vdJ-sV-VTr"/>
             </constraints>
             <point key="canvasLocation" x="24.637681159420293" y="105.80357142857143"/>
         </view>

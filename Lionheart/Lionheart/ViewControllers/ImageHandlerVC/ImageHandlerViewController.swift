@@ -8,21 +8,29 @@
 import UIKit
 
 class ImageHandlerViewController: UIViewController {
-
-    var draggedImages = [UIImage]()
-    let layerImageView = DraggableLayerImageView(image: UIImage(named: "crown"))
+    
+    // MARK: Variables
+    private var layerImages = [UIImage(named: "wand"), UIImage(named: "crown"), UIImage(named: "football"), UIImage(named: "basketball")]
+    
+    private var draggedLayers = [UIImageView]()
     
     enum TopButtonType {
         case export
         case save
     }
     
-    // MARK: Variables
+    private var isEditingImage = false {
+        didSet {
+            setTopButtonType()
+        }
+    }
+    
     private var collectable: Collectable
     
-    @IBOutlet weak var containerView: UIView! {
+    @IBOutlet weak var layersCollectionView: UICollectionView! {
         didSet {
-            self.containerView.backgroundColor = .green
+            self.layersCollectionView.register(LayerCollectionViewCell.self, forCellWithReuseIdentifier: "LayerCollectionViewCell")
+            self.layersCollectionView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
         }
     }
     
@@ -57,15 +65,16 @@ class ImageHandlerViewController: UIViewController {
     }
     
     private func setup() {
-        loadLayerImageView()
         
-        setTopButtonTo(buttonType: .save)
+        self.layersCollectionView.delegate = self
+        self.layersCollectionView.dataSource = self
+        
+        setTopButtonType()
     }
-    
-    
 }
 
 extension ImageHandlerViewController {
+    
     // MARK: Exporting/Sharing image
     @objc private func exportTapped() {
         // set up activity view controller
@@ -79,28 +88,12 @@ extension ImageHandlerViewController {
     
     // MARK: Merging edits with image
     @objc private func saveTapped() {
-        self.collectableImageView.image = ImageProcessor.mergeImageWithLayer(mainImageView: collectableImageView, layerImageView: layerImageView)
+        for layer in draggedLayers {
+            self.collectableImageView.image = ImageProcessor.mergeImageWithLayer(mainImageView: collectableImageView, layerImageView: layer)
+            layer.removeFromSuperview()
+        }
         
-        setTopButtonTo(buttonType: .export)
-    }
-    
-    private func loadLayerImageView() {
-        
-        layerImageView.contentMode = .scaleAspectFit
-        layerImageView.isUserInteractionEnabled = true
-        
-        var aspectR: CGFloat = 0.0
-
-        aspectR = layerImageView.image!.size.width/layerImageView.image!.size.height
-        self.view.addSubview(layerImageView)
-        
-        layerImageView.translatesAutoresizingMaskIntoConstraints = false
-        layerImageView.widthAnchor.constraint(equalToConstant: 75).isActive = true
-        layerImageView.heightAnchor.constraint(equalTo: layerImageView.widthAnchor, multiplier: 1/aspectR).isActive = true
-        layerImageView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
-        layerImageView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        
-        draggedImages.append(layerImageView.image!)
+        isEditingImage = false
     }
     
     private func loadCollectable() {
@@ -110,14 +103,55 @@ extension ImageHandlerViewController {
     }
     
     // Switching top button depending on the state of the image. Save must always happen before export!
-    private func setTopButtonTo(buttonType: TopButtonType) {
-        if buttonType == .export {
+    private func setTopButtonType() {
+        if isEditingImage == false {
             let exportButton = UIBarButtonItem(title: "Export", style: .plain, target: self, action: #selector(exportTapped))
             self.navigationItem.rightBarButtonItems = [exportButton]
         }
-        else if buttonType == .save {
+        else if isEditingImage == true {
             let saveButton = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveTapped))
             self.navigationItem.rightBarButtonItems = [saveButton]
         }
+    }
+}
+
+extension ImageHandlerViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.height, height: collectionView.frame.height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return CELL_HORIZONTAL_SPACING
+    }
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return layerImages.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LayerCollectionViewCell", for: indexPath) as? LayerCollectionViewCell {
+            cell.delegate = self
+            
+            let currentLayer = layerImages[indexPath.item]
+            cell.loadLayerImage(image: currentLayer!)
+            
+            return cell
+        }
+        else {
+            return UICollectionViewCell()
+        }
+    }
+}
+
+// MARK: Layer Cell Delegate
+extension ImageHandlerViewController: LayerCellDelegate {
+    func didDragLayer(layer: UIImageView, fromPostion: CGPoint) {
+        let layerImageView = DraggableLayerImageView(image: layer.image)
+        layerImageView.frame.size = layer.frame.size
+        layerImageView.center = self.view.convert(layer.center, from: layer.superview)
+        self.view.addSubview(layerImageView)
+        
+        draggedLayers.append(layerImageView)
+        
+        isEditingImage = true
     }
 }
