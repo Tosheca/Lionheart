@@ -10,6 +10,18 @@ import UIKit
 class ImageHandlerViewController: UIViewController {
     
     // MARK: Variables
+    var CELL_HORIZONTAL_SPACING: CGFloat {
+        get {
+            // Adjust horizontal spacing based on device
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                return 20
+            }
+            else {
+                return 10
+            }
+        }
+    }
+    
     private var layerImages = [UIImage(named: "wand"), UIImage(named: "crown"), UIImage(named: "football"), UIImage(named: "basketball")]
     
     private var draggedLayers = [UIImageView]() // All active layers are stored in here

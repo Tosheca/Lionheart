@@ -7,25 +7,25 @@
 
 import UIKit
 
-var CELL_HORIZONTAL_SPACING: CGFloat {
-    get {
-        // Adjust horizontal spacing based on device
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            return 80
-        }
-        else {
-            return 40
+class HomeScreenViewController: UIViewController {
+    
+    // MARK: Variables
+    var CELL_HORIZONTAL_SPACING: CGFloat {
+        get {
+            // Adjust horizontal spacing based on device
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                return 80
+            }
+            else {
+                return 40
+            }
         }
     }
-}
-
-class HomeScreenViewController: UIViewController {
 
     var focusedCell = CollectableCollectionViewCell()
     
     var collectables = [Collectable]()
     
-    // MARK: Variables
     @IBOutlet weak var collectablesCollectionView: UICollectionView! {
         didSet {
             self.collectablesCollectionView.register(CollectableCollectionViewCell.self, forCellWithReuseIdentifier: "CollectableCollectionViewCell")
