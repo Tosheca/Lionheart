@@ -13,7 +13,7 @@ class LayerCollectionViewCell: UICollectionViewCell {
     var delegate: LayerCellDelegate?
     
     private var layerImageView: UIImageView = {
-       let collectableImageView = UIImageView()
+        let collectableImageView = UIImageView()
         collectableImageView.contentMode = .scaleAspectFit
         return collectableImageView
     }()
@@ -37,14 +37,7 @@ class LayerCollectionViewCell: UICollectionViewCell {
                 
         setupConstraints()
         
-        self.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handlePan(recognizer:))))
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        // Updaing gradient bounds because of autolayout
-
+        self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTap(_:))))
     }
     
     private func setupConstraints() {
@@ -61,12 +54,9 @@ extension LayerCollectionViewCell {
         layerImageView.image = image
     }
     
-    @objc func handlePan(recognizer: UIPanGestureRecognizer!) {
-        if recognizer.state == UIGestureRecognizer.State.began {
-            let locationInView = recognizer.location(in: superview)
-            self.delegate?.didDragLayer(layer: self.layerImageView, fromPostion: locationInView)
-            return
-        }
+    @objc private func didTap(_ sender: UITapGestureRecognizer) {
+        let locationInView = sender.location(in: superview)
+        self.delegate?.didDragLayer(layer: self.layerImageView, fromPostion: locationInView)
     }
 }
 

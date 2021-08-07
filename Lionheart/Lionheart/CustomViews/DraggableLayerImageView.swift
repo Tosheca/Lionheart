@@ -9,8 +9,8 @@ import UIKit
 
 class DraggableLayerImageView: UIImageView {
     
-    
-    var dragStartPositionRelativeToCenter : CGPoint?
+    private var dragStartPositionRelativeToCenter : CGPoint?
+    var delegate: DraggableLayerDelegate?
     
     override init(image: UIImage!) {
         super.init(image: image)
@@ -33,7 +33,7 @@ class DraggableLayerImageView: UIImageView {
         
         if recognizer.state == UIGestureRecognizer.State.ended {
             dragStartPositionRelativeToCenter = nil
-            
+            self.delegate?.didDropLayer(self, at: recognizer.location(in: superview))
             return
         }
         
@@ -57,4 +57,9 @@ class DraggableLayerImageView: UIImageView {
         sender.view?.transform = scale
         sender.scale = 1
     }
+}
+
+// MARK: Draggable Layer Delegate
+protocol DraggableLayerDelegate {
+    func didDropLayer(_ layer: UIImageView, at: CGPoint)
 }

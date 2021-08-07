@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ImageHandlerViewController" customModule="Lionheart" customModuleProvider="target">
             <connections>
+                <outlet property="binImageView" destination="zI4-uS-If1" id="Cxy-jW-eIm"/>
                 <outlet property="collectableImageView" destination="NNd-oX-QY1" id="Yaq-Tt-v1z"/>
                 <outlet property="layersCollectionView" destination="Oeh-sk-gqd" id="980-Yh-WU2"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -36,24 +37,42 @@
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                 </collectionView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bin" translatesAutoresizingMaskIntoConstraints="NO" id="zI4-uS-If1">
+                    <rect key="frame" x="182" y="692" width="50" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="A3a-mb-QFg"/>
+                        <constraint firstAttribute="width" constant="50" id="lfU-fY-MRZ"/>
+                    </constraints>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="evY-e9-xTO">
+                    <rect key="frame" x="0.0" y="862" width="414" height="34"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="Oeh-sk-gqd" firstAttribute="height" secondItem="fnl-2z-Ty3" secondAttribute="height" multiplier="0.122249" priority="900" id="2PQ-HG-qaF"/>
                 <constraint firstItem="Oeh-sk-gqd" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="8ou-nM-2ZG"/>
+                <constraint firstItem="evY-e9-xTO" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="AxY-8w-ieE"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Oeh-sk-gqd" secondAttribute="trailing" id="Gs8-SL-Oiz"/>
                 <constraint firstItem="Oeh-sk-gqd" firstAttribute="top" secondItem="NNd-oX-QY1" secondAttribute="bottom" id="Txb-xJ-KBM"/>
                 <constraint firstItem="NNd-oX-QY1" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="UPm-QS-Oav"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Oeh-sk-gqd" secondAttribute="bottom" id="ZFV-B6-RMz"/>
                 <constraint firstItem="NNd-oX-QY1" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="bdy-EC-e5v"/>
+                <constraint firstItem="zI4-uS-If1" firstAttribute="centerX" secondItem="NNd-oX-QY1" secondAttribute="centerX" id="bfH-ZO-dWj"/>
+                <constraint firstItem="evY-e9-xTO" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="c6i-Tb-TPu"/>
                 <constraint firstItem="Oeh-sk-gqd" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="cZJ-Nx-nym"/>
+                <constraint firstItem="evY-e9-xTO" firstAttribute="top" secondItem="Oeh-sk-gqd" secondAttribute="bottom" id="tbN-63-LMD"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="NNd-oX-QY1" secondAttribute="trailing" id="upf-i6-r57"/>
+                <constraint firstItem="evY-e9-xTO" firstAttribute="bottom" secondItem="i5M-Pr-FkT" secondAttribute="bottom" id="vC3-5X-l8k"/>
+                <constraint firstItem="zI4-uS-If1" firstAttribute="bottom" secondItem="NNd-oX-QY1" secondAttribute="bottom" constant="-20" id="yub-Fd-rs7"/>
             </constraints>
             <point key="canvasLocation" x="24.637681159420293" y="105.80357142857143"/>
         </view>
     </objects>
     <resources>
+        <image name="bin" width="256" height="256"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

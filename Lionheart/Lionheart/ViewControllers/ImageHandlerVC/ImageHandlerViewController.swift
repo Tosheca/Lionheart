@@ -12,12 +12,7 @@ class ImageHandlerViewController: UIViewController {
     // MARK: Variables
     private var layerImages = [UIImage(named: "wand"), UIImage(named: "crown"), UIImage(named: "football"), UIImage(named: "basketball")]
     
-    private var draggedLayers = [UIImageView]()
-    
-    enum TopButtonType {
-        case export
-        case save
-    }
+    private var draggedLayers = [UIImageView]() // All active layers are stored in here
     
     private var isEditingImage = false {
         didSet {
@@ -27,16 +22,19 @@ class ImageHandlerViewController: UIViewController {
     
     private var collectable: Collectable
     
+    @IBOutlet weak var binImageView: UIImageView!
+    
     @IBOutlet weak var layersCollectionView: UICollectionView! {
         didSet {
             self.layersCollectionView.register(LayerCollectionViewCell.self, forCellWithReuseIdentifier: "LayerCollectionViewCell")
             self.layersCollectionView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
+            self.layersCollectionView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
+            self.layersCollectionView.layer.cornerRadius = 20
         }
     }
     
     @IBOutlet weak var collectableImageView: UIImageView! {
         didSet {
-            self.collectableImageView.contentMode = .scaleAspectFill
             self.collectableImageView.isUserInteractionEnabled = true
             self.collectableImageView.contentMode = .scaleAspectFit
         }
@@ -115,6 +113,7 @@ extension ImageHandlerViewController {
     }
 }
 
+// MARK: Collection View
 extension ImageHandlerViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.height, height: collectionView.frame.height)
@@ -144,14 +143,37 @@ extension ImageHandlerViewController: UICollectionViewDataSource, UICollectionVi
 
 // MARK: Layer Cell Delegate
 extension ImageHandlerViewController: LayerCellDelegate {
+    // When a layer is selected from the layer's collection view, creates a copy image view to become an interactive layer
     func didDragLayer(layer: UIImageView, fromPostion: CGPoint) {
         let layerImageView = DraggableLayerImageView(image: layer.image)
         layerImageView.frame.size = layer.frame.size
         layerImageView.center = self.view.convert(layer.center, from: layer.superview)
+        layerImageView.center.y -= 50 // offsetting the copy layer to be better visible
         self.view.addSubview(layerImageView)
         
+        layerImageView.delegate = self
         draggedLayers.append(layerImageView)
         
         isEditingImage = true
+    }
+}
+
+// MARK: Draggable Layer Delegate
+extension ImageHandlerViewController: DraggableLayerDelegate {
+    func didDropLayer(_ layer: UIImageView, at: CGPoint) {
+        if binImageView.frame.contains(at) {
+            removeLayer(layer)
+        }
+    }
+    
+    private func removeLayer(_ layer: UIImageView) {
+        for draggedLayerIndex in 0..<draggedLayers.count {
+            if draggedLayers[draggedLayerIndex] == layer {
+                draggedLayers.remove(at: draggedLayerIndex)
+                layer.removeFromSuperview()
+                
+                return
+            }
+        }
     }
 }
