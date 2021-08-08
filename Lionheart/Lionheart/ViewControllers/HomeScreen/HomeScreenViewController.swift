@@ -70,25 +70,13 @@ class HomeScreenViewController: UIViewController {
 }
 
 extension HomeScreenViewController {
-    // Fetches pre-downloaded data for testing purposes
     private func fetchCollectables() {
-        let collectable1 = Collectable(image: UIImage(named: "dog"), title: "Dog", author: "TEmmyMik")
-        let collectable2 = Collectable(image: UIImage(named: "cat"), title: "Cat", author: "taniuniyana")
-        let collectable3 = Collectable(image: UIImage(named: "monkey"), title: "Monkey", author: "Subash BGK")
-        let collectable4 = Collectable(image: UIImage(named: "fish"), title: "Fish", author: "Gracie Loo")
-        let collectable5 = Collectable(image: UIImage(named: "bird"), title: "Bird", author: "Mathias Appel")
-        let collectable6 = Collectable(image: UIImage(named: "horse"), title: "Horse", author: "Guy Frankland")
-        let collectable7 = Collectable(image: UIImage(named: "lion"), title: "Lion", author: "Rebecca Kepich")
-        let collectable8 = Collectable(image: UIImage(named: "tiger"), title: "Tiger", author: "Mathias Appel")
-        
-        collectables.append(collectable1)
-        collectables.append(collectable2)
-        collectables.append(collectable3)
-        collectables.append(collectable4)
-        collectables.append(collectable5)
-        collectables.append(collectable6)
-        collectables.append(collectable7)
-        collectables.append(collectable8)
+        CollectablesDataFetcher.fetchCollectables(completion: { fetchedCollectables in
+            DispatchQueue.main.async {
+                self.collectables = fetchedCollectables
+                self.collectablesCollectionView.reloadData()
+            }
+        })
     }
     
     private func openCollectable(_ collectable: Collectable) {
