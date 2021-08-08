@@ -17,6 +17,8 @@ class DraggableLayerImageView: UIImageView {
         
         self.isUserInteractionEnabled = true
         self.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handlePan(recognizer:))))
+        
+        enableZoom()
     }
     
     required init?(coder aDecoder: NSCoder) {

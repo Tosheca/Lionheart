@@ -42,10 +42,10 @@ class LayerCollectionViewCell: UICollectionViewCell {
     
     private func setupConstraints() {
         layerImageView.translatesAutoresizingMaskIntoConstraints = false
-        layerImageView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 20).isActive = true
-        layerImageView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -20).isActive = true
-        layerImageView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 20).isActive = true
-        layerImageView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -20).isActive = true
+        layerImageView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 10).isActive = true
+        layerImageView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -10).isActive = true
+        layerImageView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10).isActive = true
+        layerImageView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -10).isActive = true
     }
 }
 

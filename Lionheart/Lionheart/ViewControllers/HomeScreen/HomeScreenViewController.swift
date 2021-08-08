@@ -75,6 +75,7 @@ extension HomeScreenViewController {
             DispatchQueue.main.async {
                 self.collectables = fetchedCollectables
                 self.collectablesCollectionView.reloadData()
+                self.selectFocusedCell()
             }
         })
     }
