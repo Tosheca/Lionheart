@@ -64,7 +64,8 @@ class HomeScreenViewController: UIViewController {
         })
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         selectFocusedCell()
     }
 }
@@ -75,7 +76,6 @@ extension HomeScreenViewController {
             DispatchQueue.main.async {
                 self.collectables = fetchedCollectables
                 self.collectablesCollectionView.reloadData()
-                self.selectFocusedCell()
             }
         })
     }

@@ -49,6 +49,7 @@ class ImageHandlerViewController: UIViewController {
         didSet {
             self.collectableImageView.isUserInteractionEnabled = true
             self.collectableImageView.contentMode = .scaleAspectFit
+            self.collectableImageView.backgroundColor = .green
         }
     }
     
