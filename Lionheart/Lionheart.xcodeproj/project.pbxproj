@@ -28,6 +28,9 @@
 		ED8F9D3B26C035CE00F7326B /* FlickrImageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED8F9D3A26C035CE00F7326B /* FlickrImageResponse.swift */; };
 		ED8F9D3D26C041EB00F7326B /* CollectablesDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED8F9D3C26C041EB00F7326B /* CollectablesDataFetcher.swift */; };
 		ED8F9D3F26C046E900F7326B /* GenericRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED8F9D3E26C046E900F7326B /* GenericRequest.swift */; };
+		ED8F9D4126C16D7800F7326B /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED8F9D4026C16D7800F7326B /* RootViewController.swift */; };
+		ED8F9D4326C16DCF00F7326B /* CustomProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED8F9D4226C16DCF00F7326B /* CustomProgressView.swift */; };
+		ED8F9D4626C1999F00F7326B /* LoadingDialogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED8F9D4526C1999F00F7326B /* LoadingDialogViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +78,9 @@
 		ED8F9D3A26C035CE00F7326B /* FlickrImageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrImageResponse.swift; sourceTree = "<group>"; };
 		ED8F9D3C26C041EB00F7326B /* CollectablesDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectablesDataFetcher.swift; sourceTree = "<group>"; };
 		ED8F9D3E26C046E900F7326B /* GenericRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericRequest.swift; sourceTree = "<group>"; };
+		ED8F9D4026C16D7800F7326B /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		ED8F9D4226C16DCF00F7326B /* CustomProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomProgressView.swift; sourceTree = "<group>"; };
+		ED8F9D4526C1999F00F7326B /* LoadingDialogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingDialogViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +168,8 @@
 		ED28C54826B6E38400C3D2AF /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				ED8F9D4026C16D7800F7326B /* RootViewController.swift */,
+				ED8F9D4426C1998B00F7326B /* Dialogs */,
 				ED28C55526B89C9000C3D2AF /* ImageHandlerVC */,
 				ED28C54E26B6EB2400C3D2AF /* HomeScreen */,
 			);
@@ -207,6 +215,7 @@
 			isa = PBXGroup;
 			children = (
 				ED28C55F26B9D0BD00C3D2AF /* DraggableLayerImageView.swift */,
+				ED8F9D4226C16DCF00F7326B /* CustomProgressView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -253,6 +262,14 @@
 				ED8F9D3A26C035CE00F7326B /* FlickrImageResponse.swift */,
 			);
 			path = Responses;
+			sourceTree = "<group>";
+		};
+		ED8F9D4426C1998B00F7326B /* Dialogs */ = {
+			isa = PBXGroup;
+			children = (
+				ED8F9D4526C1999F00F7326B /* LoadingDialogViewController.swift */,
+			);
+			path = Dialogs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -392,9 +409,12 @@
 				ED28C51926B6E01000C3D2AF /* AppDelegate.swift in Sources */,
 				ED28C56326BAD89B00C3D2AF /* ImageProcessor.swift in Sources */,
 				ED28C55C26B91D8E00C3D2AF /* ImageHandlerViewController.swift in Sources */,
+				ED8F9D4126C16D7800F7326B /* RootViewController.swift in Sources */,
+				ED8F9D4326C16DCF00F7326B /* CustomProgressView.swift in Sources */,
 				ED8F9D3926C0359D00F7326B /* FlickrResponse.swift in Sources */,
 				ED8F9D3B26C035CE00F7326B /* FlickrImageResponse.swift in Sources */,
 				ED28C56926BC428800C3D2AF /* LayerCollectionViewCell.swift in Sources */,
+				ED8F9D4626C1999F00F7326B /* LoadingDialogViewController.swift in Sources */,
 				ED28C55126B6EB8800C3D2AF /* CollectableCollectionViewCell.swift in Sources */,
 				ED28C56526BAD96100C3D2AF /* UIImageViewExtension.swift in Sources */,
 				ED28C54D26B6E5A500C3D2AF /* Collectable.swift in Sources */,

@@ -24,15 +24,7 @@ extension UIImageView {
         return CGRect(x: x, y: y, width: size.width, height: size.height)
     }
     
-    var scale: CGFloat {
-        guard let image = image else { return 1 }
-        guard contentMode == .scaleAspectFit else { return 1 }
-        guard image.size.width > 0 && image.size.height > 0 else { return 1 }
-        
-        if image.size.width >= image.size.height {
-            return bounds.width / image.size.width
-        } else {
-            return bounds.height / image.size.height
-        }
+    var transformScale: CGFloat {
+        return sqrt(CGFloat(self.transform.a * self.transform.a + self.transform.c * self.transform.c))
     }
 }

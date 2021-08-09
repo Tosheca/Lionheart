@@ -15,7 +15,7 @@ class ImageProcessor {
         UIGraphicsBeginImageContext(size)
         
         let ratio = mainImageView.image!.size.width / mainImageView.frame.size.width
-        let scale = sqrt(CGFloat(layerImageView.transform.a * layerImageView.transform.a + layerImageView.transform.c * layerImageView.transform.c))
+        let scale = layerImageView.transformScale
         let size2 = CGSize(width: layerImageView.contentClippingRect.width * ratio * scale, height: layerImageView.contentClippingRect.height * ratio * scale)
         
         let area1 = CGRect(x: 0, y: 0, width: size.width, height: size.height)

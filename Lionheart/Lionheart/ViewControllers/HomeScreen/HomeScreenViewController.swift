@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeScreenViewController: UIViewController {
+class HomeScreenViewController: RootViewController {
     
     // MARK: Variables
     var CELL_HORIZONTAL_SPACING: CGFloat {
@@ -72,11 +72,13 @@ class HomeScreenViewController: UIViewController {
 
 extension HomeScreenViewController {
     private func fetchCollectables() {
+        self.startLoading(withDuration: 5.0)
         CollectablesDataFetcher.fetchCollectables(completion: { fetchedCollectables in
             DispatchQueue.main.async {
                 self.collectables = fetchedCollectables
                 self.collectablesCollectionView.reloadData()
             }
+            self.stopLoading()
         })
     }
     

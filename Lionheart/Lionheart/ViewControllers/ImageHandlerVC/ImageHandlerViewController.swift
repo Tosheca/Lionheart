@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ImageHandlerViewController: UIViewController {
+class ImageHandlerViewController: RootViewController {
     
     // MARK: Variables
     var CELL_HORIZONTAL_SPACING: CGFloat {
@@ -34,7 +34,12 @@ class ImageHandlerViewController: UIViewController {
     
     private var collectable: Collectable
     
-    @IBOutlet weak var binImageView: UIImageView!
+    @IBOutlet weak var binImageView: UIImageView! {
+        didSet {
+            self.binImageView.backgroundColor = .white
+            self.binImageView.layer.cornerRadius = 10
+        }
+    }
     
     @IBOutlet weak var layersCollectionView: UICollectionView! {
         didSet {
@@ -49,7 +54,6 @@ class ImageHandlerViewController: UIViewController {
         didSet {
             self.collectableImageView.isUserInteractionEnabled = true
             self.collectableImageView.contentMode = .scaleAspectFit
-            self.collectableImageView.backgroundColor = .green
         }
     }
     
@@ -93,7 +97,10 @@ extension ImageHandlerViewController {
         let activityViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
         activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
                 
-        self.present(activityViewController, animated: true, completion: nil)
+        self.startLoading(withDuration: 3.0)
+        self.present(activityViewController, animated: true, completion: {
+            self.stopLoading()
+        })
         
     }
     
