@@ -1,6 +1,6 @@
 # Collectables
 
-The app presents the lates image posts retrieved from Flickr with tag "animals"
+The app presents the latest image posts retrieved from Flickr with tag "animals"
 
 Home screen:
 - List of all fetched collectables
