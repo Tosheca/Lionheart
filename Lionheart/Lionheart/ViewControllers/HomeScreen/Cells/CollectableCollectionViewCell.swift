@@ -39,6 +39,7 @@ class CollectableCollectionViewCell: UICollectionViewCell {
         return authorLabel
     }()
     
+    // Used for gradient effect of the infoView
     private let gradientLayer: CAGradientLayer = {
         let gradientLayer = CAGradientLayer()
         gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]

@@ -106,6 +106,7 @@ extension ImageHandlerViewController {
     
     // MARK: Merging edits with image
     @objc private func saveTapped() {
+        // For each add on layer, the add on layer is merged with the foundation image
         for layer in draggedLayers {
             self.collectableImageView.image = ImageProcessor.mergeImageWithLayer(mainImageView: collectableImageView, layerImageView: layer)
             layer.removeFromSuperview()
@@ -164,7 +165,7 @@ extension ImageHandlerViewController: UICollectionViewDataSource, UICollectionVi
 // MARK: Layer Cell Delegate
 extension ImageHandlerViewController: LayerCellDelegate {
     // When a layer is selected from the layer's collection view, creates a copy image view to become an interactive layer
-    func didDragLayer(layer: UIImageView, fromPostion: CGPoint) {
+    func didChoseLayer(layer: UIImageView, fromPostion: CGPoint) {
         let layerImageView = DraggableLayerImageView(image: layer.image)
         layerImageView.frame.size = layer.frame.size
         layerImageView.center = self.view.convert(layer.center, from: layer.superview)
@@ -172,7 +173,7 @@ extension ImageHandlerViewController: LayerCellDelegate {
         self.view.addSubview(layerImageView)
         
         layerImageView.delegate = self
-        draggedLayers.append(layerImageView)
+        draggedLayers.append(layerImageView) // adding the copy add on layer to the active layers
         
         isEditingImage = true
     }
@@ -180,17 +181,20 @@ extension ImageHandlerViewController: LayerCellDelegate {
 
 // MARK: Draggable Layer Delegate
 extension ImageHandlerViewController: DraggableLayerDelegate {
+    // MARK: Removing Layer
     func didDropLayer(_ layer: UIImageView, at: CGPoint) {
+        // If the layer is dropped into the bin imageView, the later is removed
         if binImageView.frame.contains(at) {
             removeLayer(layer)
         }
     }
     
     private func removeLayer(_ layer: UIImageView) {
+        // Finding the layer to be removed
         for draggedLayerIndex in 0..<draggedLayers.count {
             if draggedLayers[draggedLayerIndex] == layer {
-                draggedLayers.remove(at: draggedLayerIndex)
-                layer.removeFromSuperview()
+                draggedLayers.remove(at: draggedLayerIndex) // removes the layer from the active ones
+                layer.removeFromSuperview() // removes the layer from the superview
                 
                 return
             }

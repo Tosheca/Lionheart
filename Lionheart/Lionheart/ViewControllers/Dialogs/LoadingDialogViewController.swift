@@ -7,6 +7,7 @@
 
 import UIKit
 
+// View controller used to hold the progress view
 class LoadingDialogViewController: UIViewController {
 
     var loadingView = CustomProgressView()
@@ -25,6 +26,10 @@ class LoadingDialogViewController: UIViewController {
         
         loadingView.lineWidth = 0.15
         
+        setupConstraints()
+    }
+    
+    private func setupConstraints() {
         loadingView.translatesAutoresizingMaskIntoConstraints = false
         loadingView.widthAnchor.constraint(equalToConstant: 100).isActive = true
         loadingView.heightAnchor.constraint(equalToConstant: 100).isActive = true
@@ -41,6 +46,7 @@ extension LoadingDialogViewController {
     
     func stopLoading() {
         loadingView.stopAnimation(completion: {
+            // Timer used to wait for a bit for better representation of the finish animation of the progress view
             Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { timer in
                 self.view.removeFromSuperview()
             })

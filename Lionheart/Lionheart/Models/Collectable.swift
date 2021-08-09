@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+// A Collectable represents an image
 class Collectable {
     var image: UIImage!
     var author: String!

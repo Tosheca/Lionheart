@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 extension UIImageView {
+    // contentClippingRect returns a rect of the image inside the imageView. Cuts any empty area if contentMode == .scaleAspectFit
     var contentClippingRect: CGRect {
         guard let image = image else { return bounds }
         guard contentMode == .scaleAspectFit else { return bounds }
@@ -24,6 +25,7 @@ extension UIImageView {
         return CGRect(x: x, y: y, width: size.width, height: size.height)
     }
     
+    // Returns the scale of the image based on transformations. Used when image is scaled up
     var transformScale: CGFloat {
         return sqrt(CGFloat(self.transform.a * self.transform.a + self.transform.c * self.transform.c))
     }

@@ -10,6 +10,7 @@ import UIKit
 
 class CustomProgressView: UIView {
     
+    // Color properties available for change outside the view
     public var backgroundCircleColor: UIColor = UIColor.lightGray
     public var foregroundCircleColor: UIColor = UIColor.red
     public var startGradientColor: UIColor = UIColor.red
@@ -54,6 +55,7 @@ class CustomProgressView: UIView {
         layer.addSublayer(gradientLayer)
     }
     
+    // Creates circular layer based in the view size
     private func createCircularLayer(strokeColor: CGColor, fillColor: CGColor, lineWidth: CGFloat) -> CAShapeLayer {
         
         let startAngle = -CGFloat.pi / 2
@@ -84,7 +86,7 @@ class CustomProgressView: UIView {
     }
 }
 
-// Animation
+// MARK: Animations
 extension CustomProgressView {
     
     func startAnimation() {
@@ -92,6 +94,7 @@ extension CustomProgressView {
         self.progress = 0
         self.timer?.invalidate()
         
+        // constructs Timer to animate the fill
         timer = Timer.scheduledTimer(withTimeInterval: duration*0.1, repeats: true, block: { timer in
             
             DispatchQueue.main.async {
@@ -106,7 +109,9 @@ extension CustomProgressView {
     }
     
     func stopAnimation(completion: @escaping(() -> Void)) {
-        timer?.invalidate()
+        timer?.invalidate() // resets timer
+        
+        // constructs Timer to animate the fill to the end
         timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false, block: { timer in
             
             DispatchQueue.main.async {

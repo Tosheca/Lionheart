@@ -71,6 +71,7 @@ class HomeScreenViewController: RootViewController {
 }
 
 extension HomeScreenViewController {
+    // MARK: Fetching Collectables
     private func fetchCollectables() {
         self.startLoading(withDuration: 5.0)
         CollectablesDataFetcher.fetchCollectables(completion: { fetchedCollectables in
@@ -82,6 +83,7 @@ extension HomeScreenViewController {
         })
     }
     
+    // MARK: Open Collectable
     private func openCollectable(_ collectable: Collectable) {
         let imageHandlerVC = ImageHandlerViewController(collectable)
         self.navigationController?.pushViewController(imageHandlerVC, animated: true)
@@ -133,10 +135,12 @@ extension HomeScreenViewController: UICollectionViewDataSource, UICollectionView
             let convertedRect = visibleCell.convert(visibleCell.bounds, to: self.view)
 
             if convertedRect.contains(self.view.center) {
-                if visibleCell != focusedCell {
+                if visibleCell != focusedCell { // ensures optimization (only enters once)
                     focusedCell.transformToOriginal()
                     focusedCell = visibleCell as! CollectableCollectionViewCell
                     focusedCell.transformToFocus()
+                    
+                    return
                 }
             }
         }

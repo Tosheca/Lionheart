@@ -56,10 +56,11 @@ extension LayerCollectionViewCell {
     
     @objc private func didTap(_ sender: UITapGestureRecognizer) {
         let locationInView = sender.location(in: superview)
-        self.delegate?.didDragLayer(layer: self.layerImageView, fromPostion: locationInView)
+        self.delegate?.didChoseLayer(layer: self.layerImageView, fromPostion: locationInView)
     }
 }
 
 protocol LayerCellDelegate {
-    func didDragLayer(layer: UIImageView, fromPostion: CGPoint)
+    // Used to detect when an add on layer is selected from the collection view.
+    func didChoseLayer(layer: UIImageView, fromPostion: CGPoint)
 }
