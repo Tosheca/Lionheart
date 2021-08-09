@@ -22,7 +22,7 @@ class ImageHandlerViewController: RootViewController {
         }
     }
     
-    private var layerImages = [UIImage(named: "wand"), UIImage(named: "crown"), UIImage(named: "football"), UIImage(named: "basketball")]
+    private var layerImages = [UIImage(named: "wand"), UIImage(named: "crown"), UIImage(named: "football"), UIImage(named: "sword"), UIImage(named: "basketball"), UIImage(named: "kite"), UIImage(named: "laughing"), UIImage(named: "police-badge")]
     
     private var draggedLayers = [UIImageView]() // All active layers are stored in here
     
