@@ -109,7 +109,7 @@ extension ImageHandlerViewController {
         // For each add on layer, the add on layer is merged with the foundation image
         for layer in draggedLayers {
             self.collectableImageView.image = ImageProcessor.mergeImageWithLayer(mainImageView: collectableImageView, layerImageView: layer)
-            layer.removeFromSuperview()
+            removeLayer(layer)
         }
         
         isEditingImage = false
